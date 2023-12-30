@@ -1,3 +1,4 @@
+import { Bearer_Token } from "./tokens";
 export const LOGO_CDN =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 export const USER_LOGO_CDN =
@@ -9,6 +10,6 @@ export const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMTk3NjQ4Njc4NTNhODQwY2MxNDMzYjVlZWNmNzhiZiIsInN1YiI6IjY1OGZkNjEyZTAwNGE2NmM5NTE3MTM3ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.clbdqmUgaa_ifB9G7QKFV3ousWD8LrATNeuFdn_fj9s'
+      Authorization:{Bearer_Token}
     }
   };
