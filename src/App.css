@@ -5,3 +5,12 @@
 .no-scrollbar::-webkit-scrollbar { 
     display: none; 
 } 
+@keyframes shimmer-animation {
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer-animation 1.5s infinite linear;
+  }

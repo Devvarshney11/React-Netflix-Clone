@@ -6,10 +6,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { LOGO_CDN, USER_LOGO_CDN } from "../utils/constant";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -28,26 +30,31 @@ const Header = () => {
       .then(() => {})
       .catch((error) => {});
   };
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+
   const user = useSelector((state) => state.user.user);
   return (
-    <div className="h-[90px] bg-gradient-to-b from-black via-black to-transparent absolute z-50 w-[100%] flex justify-between items-center">
-      <img className="h-full" src={LOGO_CDN} alt="netflix-logo" />
+    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+      <img className="w-44 mx-auto md:mx-0" src={LOGO_CDN} alt="logo" />
       {user && (
-        <>
-          <img
-            className="absolute right-28 h-10"
-            src={USER_LOGO_CDN}
-            alt="avatar"
-          />
+        <div className="flex p-2 justify-between">
           <button
-            className="absolute right-8 bg-red-700 rounded-md text-white font-bold p-1"
-            onClick={() => {
-              handleSignOut();
-            }}
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg"
+            onClick={handleGptSearchClick}
           >
-            Sign Out
+            {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
-        </>
+          <img
+            className="hidden md:block w-12 h-12"
+            alt="usericon"
+            src={USER_LOGO_CDN}
+          />
+          <button onClick={handleSignOut} className="font-bold text-white ">
+            (Sign Out)
+          </button>
+        </div>
       )}
     </div>
   );

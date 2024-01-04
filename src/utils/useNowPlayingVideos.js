@@ -35,7 +35,6 @@ const useNowPlayingVideos = () => {
   };
 
   useEffect(() => {
-    movieList.map((movie) => getNowPlayingVideo(movie));
-  }, []);
+    movieList.map((movie) => getNowPlayingVideo(movie));  }, []);
 };
 export default useNowPlayingVideos;
